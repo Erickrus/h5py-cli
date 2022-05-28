@@ -42,15 +42,18 @@ class H5pyCli:
 
     def get_pwd(self):
         if len(self.dirs) == 0:
-            return ""
+            return "/"
         else:
             dirs = []
             for i in range(len(self.dirs)):
                 dirs.append(self.dirs[i].name)
-            pwd = "/".join(dirs)
+            
+
+            # pwd = "/".join(dirs)
             # double / is confusing, just remove them
-            for i in range(1000):
-                pwd = pwd.replace("//","/")
+            #for i in range(1000):
+            #    pwd = pwd.replace("//","/")
+            pwd = dirs[-1]
             return pwd
 
     def get_curr_obj(self):
@@ -90,9 +93,9 @@ class H5pyCli:
                 else:
                     print("d:", ob.name, classname)
             if "attrs" in dir(curr_obj):
-               attrKeys = list(curr_obj.attrs.keys())
-               for i in range(len(attrKeys)):
-                   print("a: %s" % attrKeys[i])
+               attr_keys = list(curr_obj.attrs.keys())
+               for i in range(len(attr_keys)):
+                   print("a: %s" % attr_keys[i])
         elif ls_type == 'a':
             print("%s %10d" % (params[0], len(curr_obj)))
         elif ls_type == 'd':
@@ -100,6 +103,8 @@ class H5pyCli:
    
     def cd(self, params):
         errors = ['cd: %s: No such group']
+        if len(params) ==0:
+            return
         curr_obj = self.get_curr_obj()
         if params[0] == ".":
             pass
