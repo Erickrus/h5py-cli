@@ -163,12 +163,12 @@ class H5pyCli:
 This command line interface mainly handles attribute, group and dataset of the hdf5 file. 
 Following commands are defined internally.  Type `help' to see this list.
 
- cd [group]
-    change directory/group
  cat [attr|dataset]
     display the specific attribute or dataset
  cat [attr|dataset] > [filename]
     save the specific attribute or dataset to an output file
+ cd [group]
+    change directory/group
  exit
     exit to the operating system
  filename
